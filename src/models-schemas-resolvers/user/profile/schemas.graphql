@@ -1,0 +1,10 @@
+type getProfile {
+    sEmail: String
+    sFirstName: String
+    sLastName: String
+    sProfilePicture: String
+}
+
+type Query {
+    getProfile(sToken: String): getProfile
+}

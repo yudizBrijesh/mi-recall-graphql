@@ -1,0 +1,26 @@
+{
+    "extends": ["wesbos"],
+    "globals": {
+      "_": "readonly"
+    },
+    "rules": {
+      "max-lines": "off",
+      "prettier/prettier": [
+        "error",
+        {
+          "printWidth": 400,
+          "trailingComma": "es5",
+          "singleQuote": true,
+          "tabWidth": 4
+        }
+      ],
+      "prefer-destructuring": [
+        "error",
+        {
+          "object": true,
+          "array": false
+        }
+      ]
+    }
+  }
+  
