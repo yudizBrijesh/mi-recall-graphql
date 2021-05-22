@@ -1,4 +1,5 @@
-const { ApolloServer } = require('apollo-server');
+const { ApolloServer, makeExecutableSchema } = require('apollo-server-express');
+const { applyMiddleware } = require('graphql-middleware');
 
 const app = require('express')();
 
@@ -18,16 +19,20 @@ mongoose
         console.log('Connection Error');
     });
 
-const { typeDefs, resolvers } = require('./src/models-schemas-resolvers');
+const { typeDefs, resolvers, permissions } = require('./src/models-schemas-resolvers');
 
 const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: ({ req }) => req.headers,
+    schema: applyMiddleware(makeExecutableSchema({ typeDefs, resolvers }), permissions),
+    context: ({ req }) => {
+        const header = req.headers;
+        return header;
+    },
 });
 
-server.listen().then(({ url }) => {
-    console.log(`🚀  Server ready at ${url}`);
+server.applyMiddleware({ app });
+
+app.listen(4000, () => {
+    console.log(`🚀  Server ready at http://localhost:4000`);
 });
 
 module.exports = app;

@@ -14,6 +14,16 @@ _.encryptPassword = function (password) {
     return crypto.createHmac('sha256', process.env.JWT_SECRET).update(password).digest('hex');
 };
 
+_.verifyToken = function (token) {
+    try {
+        return jwt.verify(token, process.env.JWT_SECRET, function (err, decoded) {
+            return err ? err.message : decoded; // return true if token expired
+        });
+    } catch (error) {
+        return error ? error.message : error;
+    }
+};
+
 _.decodeToken = function (token) {
     try {
         return jwt.decode(token, process.env.JWT_SECRET);

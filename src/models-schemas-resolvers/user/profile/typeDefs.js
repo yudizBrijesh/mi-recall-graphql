@@ -1,9 +1,9 @@
-// require('graphql-import-node/register');
-// const { gql } = require('apollo-server');
-// const schemas = require('./schemas.graphql');
+const { gql } = require('apollo-server');
+require('graphql-import-node/register');
+const schemas = require('./schemas.graphql');
 
-// const typeDefs = gql`
-//     ${schemas}
-// `;
+const typeDefs = gql`
+    ${schemas}
+`;
 
-// module.exports = typeDefs;
+module.exports = typeDefs;

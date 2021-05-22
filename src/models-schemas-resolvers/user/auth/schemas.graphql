@@ -1,20 +1,5 @@
-type getProfile {
-    sEmail: String
-    sFirstName: String
-    sLastName: String
-    sProfilePicture: String
-}
-
-type Query {
-    _dummy: String
-}
-
 input userLogin {
     sEmail: String!
     sPassword: String!
     bIsRememberMe: Boolean
-}
-
-type Mutation {
-    userLogin(input: userLogin): String
 }

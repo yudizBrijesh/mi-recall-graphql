@@ -18,7 +18,7 @@ const resolvers = {
             if (user.sPassword !== utils.encryptPassword(input.sPassword)) return 'Password Incorrect';
             if (user.eStatus === 'n') return 'User Account not active';
             if (user.eStatus === 'd') return 'User Account not deleted';
-            const sToken = utils.encodeToken({ iUserId: user._id, eUserType: user.eUserType });
+            const sToken = input.isRememberMe ? utils.encodeToken({ iUserId: user._id, eUserType: user.eUserType }, { expiresIn: '30d' }) : utils.encodeToken({ iUserId: user._id, eUserType: user.eUserType });
             const updateQuery = {
                 $set: {
                     sToken,
