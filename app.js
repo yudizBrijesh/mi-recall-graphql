@@ -1,6 +1,5 @@
 const { ApolloServer, makeExecutableSchema } = require('apollo-server-express');
 const { applyMiddleware } = require('graphql-middleware');
-
 const app = require('express')();
 
 const mongoose = require('mongoose');

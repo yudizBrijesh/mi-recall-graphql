@@ -5,3 +5,94 @@ type getProfiles {
     sProfilePicture: String
 }
 
+input changePassword {
+    sOldPassword: String!
+    sNewPassword: String!
+}
+
+type oContactsArray {
+    sCountryCode: String
+    sContactInt: Int
+    sContactType: String
+}
+
+type oProfilesArray {
+    sProfileLink: String
+    sProfileType: String
+}
+
+type oContactData {
+    sFirstName: String
+    sLastName: String
+    sEmail: String
+    sCompany: String
+    sDesignation: String
+    sLocationCollected: String
+    eMeetingContext: String
+    eEventTitle: String
+    sEventName: String
+    sEventDescription: String
+    sNotes: String
+    ePersonalTitle: String
+    contacts: [oContactsArray]
+    profiles: [oProfilesArray]
+    sTitle: String
+    sDescription: String
+    sLocation: String
+}
+type oContentData {
+    sPresentation: String
+    sSpeaker: String
+    sRecordingNotes: String
+    sTitle: String
+    sDescription: String
+    sLocation: String
+}
+
+type oLocationData  {
+    sPlace: String
+    sRoom: Int
+    sSeating: Int
+    sTitle: String
+    sDescription: String
+    sLocation: String
+}
+
+type recordsType {
+    _id: ID
+    iUserId: ID
+    eMediaType: String
+    eRecordType: String
+    eStatus: String
+    eFormStatus: String
+    sMediaUrl: String
+    sTitle: String
+    sDescription: String
+    sLocation: String
+    sVideoDuration: String
+    sVideoThumbnailUrl: String
+    oContactData: oContactData
+    oContentData: oContentData
+    oLocationData: oLocationData
+}
+
+type records {
+    records: [recordsType]
+    totalRecords: Int
+}
+
+input inputRecords {
+    sRecordType: String
+    sMediaType: [String]!
+    nStart: Int!
+    nLimit: Int!
+}
+
+extend type Mutation {
+    changePassword(input: changePassword): String
+}
+
+extend type Query {
+    getProfiles: getProfiles
+    getRecords(input: inputRecords): records
+}

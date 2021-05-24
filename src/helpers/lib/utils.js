@@ -1,5 +1,6 @@
 const _ = {};
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 const crypto = require('crypto');
 
 _.encodeToken = function (body, expTime) {
@@ -8,6 +9,10 @@ _.encodeToken = function (body, expTime) {
     } catch (error) {
         return undefined;
     }
+};
+
+_.mongify = function (id) {
+    return mongoose.Types.ObjectId(id);
 };
 
 _.encryptPassword = function (password) {

@@ -9,7 +9,6 @@ const userProfileResolver = require('./user/profile/resolvers');
 // TpeDefs
 const userAuthSchemas = require('./user/auth/typeDefs');
 const userProfileSchemas = require('./user/profile/typeDefs');
-const schemas = require('./index.graphql');
 
 // Permissions
 const userProfilePermissions = require('./user/profile/permissions');
@@ -17,14 +16,23 @@ const userProfilePermissions = require('./user/profile/permissions');
 const resolvers = [userProfileResolver, userAuthResolver];
 
 const typeDefs = gql`
-    ${userAuthSchemas}
+    type Query {
+        _empty: String
+    }
+    type Mutation {
+        _empty: String
+    }
     ${userProfileSchemas}
-    ${schemas}
+    ${userAuthSchemas}
 `;
 
 const permissions = shield({
     Query: {
         getProfiles: userProfilePermissions.isAuthenticated,
+        getRecords: userProfilePermissions.isAuthenticated,
+    },
+    Mutation: {
+        changePassword: userProfilePermissions.isAuthenticated,
     },
 });
 

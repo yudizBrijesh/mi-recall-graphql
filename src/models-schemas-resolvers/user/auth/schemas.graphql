@@ -3,3 +3,15 @@ input userLogin {
     sPassword: String!
     bIsRememberMe: Boolean
 }
+
+input register {
+    sEmail: String!
+    sFirstName: String!
+    sLastName: String!
+    sPassword: String!
+}
+
+extend type Mutation {
+    userLogin(input: userLogin): String
+    register(input: register): String
+}
