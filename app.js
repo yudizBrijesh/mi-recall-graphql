@@ -3,6 +3,7 @@ const { applyMiddleware } = require('graphql-middleware');
 const app = require('express')();
 
 const mongoose = require('mongoose');
+const mongodb = require('mongodb');
 
 mongoose
     .connect(process.env.DB_URL, {
