@@ -22,6 +22,8 @@ const { typeDefs, resolvers, permissions } = require('./src/models-schemas-resol
 
 const server = new ApolloServer({
     schema: applyMiddleware(makeExecutableSchema({ typeDefs, resolvers }), permissions),
+    introspection: true,
+    playground: true,
     context: ({ req }) => {
         const header = req.headers;
         return header;
