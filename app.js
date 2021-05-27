@@ -31,7 +31,7 @@ const server = new ApolloServer({
 server.applyMiddleware({ app });
 
 app.listen(4000 || process.env.PORT, () => {
-    console.log(`🚀  Server ready at http://localhost:${process.env.PORT}`);
+    console.log(`🚀  Server ready at http://localhost:${4000 || process.env.PORT}`);
 });
 
 module.exports = app;
