@@ -14,7 +14,7 @@ const resolvers = {
                     eStatus: 'y',
                 };
                 const user = await User.findOne(findQuery);
-                if (!user) return 'User not Found';
+                if (!user) throw new Error('User Not Found');
                 if (!user.bIsEmailVerified) throw new Error('User Account not verified');
                 if (user.sPassword !== utils.encryptPassword(input.sPassword)) throw new Error('Password Incorrect');
                 if (user.eStatus === 'n') throw new Error('User Account not active');
