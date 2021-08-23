@@ -54,7 +54,7 @@ const resolvers = {
                 const user = await User.findOne(query);
                 if (!user) throw new Error('User not Found');
                 if (!user.sPassword === utils.encryptPassword(input.sOldPassword)) throw new Error("Old password doesn't match");
-                const updateQuery = { sPassword: utils.encryptPassword(input.sNewPasswird) };
+                const updateQuery = { sPassword: utils.encryptPassword(input.sNewPassword) };
                 const update = await User.updateOne(query, updateQuery);
                 if (!update.nModified) throw new Error('Please try again!!!');
                 return 'Password changed successfully';
